@@ -1,0 +1,192 @@
+def login():
+    global islogin
+    if islogin:
+        print("you are already logged in!")
+        return
+    global loguser
+    loguser = input("please enter your username:\n=== ")
+    dct = jsread()
+    if loguser not in dct:
+        print("username does not exist. please enter a valid username.")
+        
+        return
+    passw= input("please enter your password:\n=== ")
+    dct = jsread()
+    if dct[loguser] == passw:
+        print("welcome", loguser, "!")
+    
+        islogin = True
+    else:
+        print("wrong password! please try again.")
+
+def shop():
+    global islogin
+    global logUser
+    if not islogin:
+        print("you need to log into your account first. ")
+        return
+    
+
+    print("welcome to shop", loguser)
+    
+    user = logUser
+    with open("product.json")as f:
+        dct = json.load(f)
+        print("here is our products")
+        print(dct)
+    
+    buy = input("please enter the name of the product you want to  purchase:\n===")
+    
+    buy2 = buy
+    
+    for item in dct:
+        if item == buy:
+            x = int(dct[item])
+            if x == 0:
+                print("product is out of stocks. please try again later or buy anothr product.")
+        
+def shop():
+    global islogin
+    global logUser
+    if not islogin:
+        print("you need to log into your account first. ")
+        return
+    print("welcome to shop", loguser)
+    
+    user = logUser
+    with open("product.json")as f:
+        dct = json.load(f)
+        print("here is our products")
+        print(dct)
+    
+    buy = input("please enter the name of the product you want to  purchase:\n===")
+    
+    for item in dct:
+        if item == buy:
+            x = int(dct[item])
+            if x == 0:
+                print("product is out of stocks. please try again later or buy another product.")
+                return
+            else:
+                y = x - 1
+                
+                dct[item] = y
+        with open("product.json", "w")as f:
+            json.dunp(dct, f)
+        
+        with open("shop.json")as f:
+            stat = json.load(f)
+        
+        with open("shop.json", "W")as f:
+            stat[loguser].append(buy)
+            json.dunp(stat, f)
+        
+        with open("score.json")as f:
+            score = json.load(f)
+            a = int(score[buy])
+            a += 1
+            
+            score[buy] = a
+            
+            stat[loguser].appendbuy
+        
+        with open("score.json")as f:
+            score = json.load(f)
+            
+            a = int(score[buy])
+            a += 1
+            
+            score[buy] = a
+        
+        with open("score.json", "w")as f:
+            json.dunp(score, f)
+            
+        with open("userscore.txt")as f:
+            userscore = json.load(f)
+            
+        with open("userScore.txt", "w")as f:
+            x2 = int(userscore[user])
+            x2 += 1
+            json.dunp(userscore, f)
+
+
+def shoplist(): 
+    with open("shop.json")as f:
+        dct = json.load(f)
+        print(dct)
+        
+        
+def OutOfstuck():
+    lst = []
+    with open("product.json")as f:
+        dct = json.load(f)
+        for item in dct:
+            if dct[item] == 0:
+                lst.append(item)
+    print(lst)
+
+
+
+def popvlar():
+    with open("score.json")as f:
+        dct = json.load(f)
+        dct2 = sorted(dct.item())
+        
+        print(dct2)
+        
+        
+        
+def elitUsers():
+    with open("userscore.txt")as f:
+        dct = json.load(f)
+        print(dct)
+        
+        
+        
+        
+        
+        
+def logout():
+    global islogin
+    global logUser
+    if not islogin:
+        print("you are already logged out!")
+        return
+    
+    confirm = input("are you sure?(yes/no)):\n=== ")
+    
+    if confirm == "yes":
+        print("logout svccessful. bye", logUser)
+        islogin = False
+
+def jsRead():
+    with open("info.json")as f:
+        dct = json.load(f)
+    return dct
+
+def jswrite(dct):
+    with open('info.json', 'w')as f:
+        json.dump(dct, f)
+    
+            
+
+
+
+
+
+
+
+
+
+
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        

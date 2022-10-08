@@ -1,0 +1,107 @@
+import json
+
+
+
+islogin = False  
+def submit():
+    user = input("please Enter your user name:\n=== ")
+    dct = jsread()
+    if user in dct:
+        print("username already exists! please try a new username.")
+        return
+    passw = input("please enter a password with at least 8 characters:\n===")
+    if len(passw) < 8:
+        print("your paswoord is to short. please try again")
+        return
+    dct = jsread()
+    dct[user] = passw
+    jswrite(dct)
+    print("submit completed successfully")
+    
+    
+def login():
+    global islogin
+    if islogin:
+        print("you are already logged in!")
+        return
+    global loguser
+    loguser = input("please enter your username:\n=== ")
+    dct = jsread()
+    if loguser not in dct:
+        print("username doos not exist. please enter a valid username.")
+        return
+    passw = input("please enter your password:\n=== ")
+    dct = jsread()
+    if dct[loguser] == passw:
+        print("welcome", loguser , "!")
+        islogin = True
+    else:
+        print("wrong password! please try again")
+
+    # user = input("Enter your username: ")
+    #
+    # if user in info:
+    #         print("This username already exists! Please try again.")
+    #         return
+    #
+    # passw = input("Please enter a password with at least 8 characters: ")
+    # if len(passw) <= 8:
+    #     print("Password is too short! Please enter a password with at least 8 characters.")
+    #     return
+    #
+    # cpassw = input("Please confirm your password: ")
+    #
+    # if passw != cpassw:
+    #     print("Passwords do not match!")
+    #     return
+    # info[user] = passw
+    # print("Submit successfully done!!!")
+
+def delete():
+
+    pass
+
+
+    # user = input("Please enter your username: ")
+    #
+    # passw = input("Please enter your password: ")
+    #
+    # if user in info and info[user] == passw:
+    #
+    #     del info[user]
+    #
+    # else:
+    #     print("Wrong username or password")
+
+
+
+
+while True:
+    demand = input('''what do you want to do?
+(submit, login, shop, shoplist, outstoock, popvlar, eliteusers, logout, exit)\n=== ''')
+
+    if demand == "submit":
+        submit()
+    elif demand == "login":
+        login()
+    elif demand == "shop":
+        shop()
+    elif demand == "shoplist":
+        shoplist()
+    elif demand == "outstoock":
+        outstoock()
+    elif demand == "popvlar":
+        popvlar()
+    elif demand == "eliteusers":
+        eliteusers()
+    elif demand == "logout":
+        logout()
+    elif demand == "delete":
+        delete()
+    elif demand == "exit":
+        break
+else:
+    print("invalid input! please try again.")
+    
+
+  
